@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.fincore</groupId>
+        <artifactId>fincore-parent</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>fincore-presentation</artifactId>
+    <name>FINCORE Presentation</name>
+    <description>Composition root: app Spring Boot ejecutable, controllers REST, ensambla todo.</description>
+
+    <dependencies>
+        <!-- Conoce a application e infrastructure: es quien ensambla el grafo. -->
+        <dependency>
+            <groupId>com.fincore</groupId>
+            <artifactId>fincore-application</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fincore</groupId>
+            <artifactId>fincore-infrastructure</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!-- API REST. -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <!-- ÚNICO módulo que activa el plugin: produce el jar ejecutable.
+         La versión la hereda del pluginManagement del padre. -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Heredamos del reactor padre: groupId, version, Java 21 y el BOM
+         de Spring Boot vienen de aquí. No los repetimos. -->
+    <parent>
+        <groupId>com.fincore</groupId>
+        <artifactId>fincore-parent</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <!-- Lo único propio del módulo: su nombre. -->
+    <artifactId>fincore-domain</artifactId>
+    <name>FINCORE Domain</name>
+    <description>Núcleo de dominio: reglas de negocio puras. Sin frameworks.</description>
+
+    <!-- ============================================================
+         REGLA DE ORO: este módulo NO depende de Spring, JPA, ni de
+         ninguna tecnología de infraestructura. Solo Java puro.
+         Única dependencia: JUnit, para poder testear el dominio de
+         forma aislada (su versión la gestiona el BOM heredado).
+         ============================================================ -->
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+</project>

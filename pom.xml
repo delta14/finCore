@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- ============================================================
+         Coordenadas (GAV): identidad única del proyecto en Maven.
+         ============================================================ -->
+    <groupId>com.fincore</groupId>
+    <artifactId>fincore-parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <!-- packaging=pom => este módulo NO produce un .jar; es un agregador
+         que coordina a los módulos hijos. Es la firma de un POM padre. -->
+    <packaging>pom</packaging>
+
+    <name>FINCORE Parent</name>
+    <description>Reactor padre del monolito modular FINCORE</description>
+
+    <!-- ============================================================
+         Propiedades: decisiones comunes en un solo lugar.
+         ============================================================ -->
+    <properties>
+        <!-- Compilar a bytecode de Java 21 (records, sealed, pattern matching). -->
+        <maven.compiler.release>21</maven.compiler.release>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- Versión de Spring Boot en UN solo sitio. -->
+        <spring-boot.version>4.0.6</spring-boot.version>
+    </properties>
+
+    <!-- ============================================================
+         Módulos hijos del reactor. Se irán añadiendo al crearlos.
+         Orden recomendado de dependencia: domain -> application ->
+         infrastructure -> presentation.
+         ============================================================ -->
+    <modules>
+        <module>fincore-domain</module>
+        <module>fincore-application</module>
+        <module>fincore-infrastructure</module>
+        <module>fincore-presentation</module>
+    </modules>
+
+    <!-- ============================================================
+         dependencyManagement: GESTIONA versiones, NO añade librerías.
+         Importamos el BOM de Spring Boot: cuando un hijo pida una
+         dependencia de Spring, hereda la versión correcta y compatible
+         sin tener que escribirla.
+         ============================================================ -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- ============================================================
+         pluginManagement: fija la versión del plugin de Spring Boot
+         sin activarlo. Solo el módulo 'presentation' (el ejecutable)
+         lo declarará en su <build><plugins>.
+         ============================================================ -->
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring-boot.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+</project>

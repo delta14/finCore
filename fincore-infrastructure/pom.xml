@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.fincore</groupId>
+        <artifactId>fincore-parent</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>fincore-infrastructure</artifactId>
+    <name>FINCORE Infrastructure</name>
+    <description>Adaptadores: implementa los puertos del dominio con tecnología real (JPA, PostgreSQL).</description>
+
+    <dependencies>
+        <!-- Depende de las capas internas (declaramos lo que usamos directo). -->
+        <dependency>
+            <groupId>com.fincore</groupId>
+            <artifactId>fincore-application</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fincore</groupId>
+            <artifactId>fincore-domain</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!-- Aquí SÍ entran los frameworks. Versiones gestionadas por el BOM. -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <!-- Driver de PostgreSQL: scope runtime (no se necesita para compilar). -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+</project>
