@@ -4,7 +4,7 @@ import java.util.Optional;
 
 public interface CuentaRepository {
 
-    Optional<Cuenta> findByNoCuenta(String numeroCuenta);
+    Optional<Cuenta> findByNumeroCuenta(String numeroCuenta);
 
     void save(Cuenta cuenta);
 }
