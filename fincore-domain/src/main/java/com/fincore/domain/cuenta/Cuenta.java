@@ -64,11 +64,17 @@ public class Cuenta {
     }
 
     public String numeroCuenta() {
+
         return numeroCuenta;
     }
 
     public Money saldo() {
+
         return saldo;
+    }
+
+    public Currency moneda(){
+        return moneda;
     }
 
     @Override
